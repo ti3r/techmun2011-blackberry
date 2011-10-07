@@ -12,6 +12,7 @@ public class MesasFetcher {
 		Mesa m = new Mesa();
 		m.setId(new Long(1L)); m.setNombre("Desarme"); m.setColor("#FF0000");
 		m.setRepresentante(new Usuario("Alexandro", "alex@alex.com"));
+		m.setDarkColor(true);
 		result.addElement(m);
 		return result;
 		

@@ -2,44 +2,29 @@ package org.blanco.tecmun.bb.screens;
 
 import java.util.Vector;
 
-import net.rim.device.api.ui.Field;
-import net.rim.device.api.ui.Graphics;
-import net.rim.device.api.ui.XYRect;
 import net.rim.device.api.ui.component.ButtonField;
-import net.rim.device.api.ui.component.ListField;
 import net.rim.device.api.ui.container.MainScreen;
-import net.rim.device.api.ui.decor.Background;
 
+import org.blanco.techmun.entities.Evento;
 import org.blanco.techmun.entities.Mesa;
+import org.blanco.tecmun.bb.Logger;
 import org.blanco.tecmun.bb.misc.Utils;
 import org.blanco.tecmun.bb.net.EventosFetcher;
+import org.blanco.tecmun.bb.ui.EventosListField;
 import org.blanco.tecmun.bb.ui.callbacks.EventosVectorListFieldCallBack;
 
 public class EventosScreen extends MainScreen {
 
 	Mesa mesa = null;
-	ListField lista = null;
+	EventosListField lista = null;
 	
 	public EventosScreen(Mesa mesa){
 		super(MainScreen.VERTICAL_SCROLL | MainScreen.VERTICAL_SCROLLBAR);
 		if (mesa != null)
 			setTitle("Eventos para Mesa: "+mesa.getNombre());
 		this.mesa = mesa;
-		Background background = new Background() {
-			
-			public boolean isTransparent() {				
-				return false;
-			}
-			
-			public void draw(Graphics graphics, XYRect rect) {
-				graphics.setColor(
-						Utils.parseHtmlColor(EventosScreen.this.mesa.getColor()));
-				graphics.fillRoundRect(rect.x, rect.y, 
-						rect.width, rect.height, 5, 5);
-			}
-		};
-		setBackground(Field.VISUAL_STATE_ACTIVE, background);
-		lista = new ListField();
+		lista = new EventosListField(Utils.parseHtmlColor(mesa.getColor()),
+				mesa.isDarkColor());
 		add(lista);
 		ButtonField masBtn = new ButtonField("Mas eventos");
 		add(masBtn);
@@ -54,7 +39,23 @@ public class EventosScreen extends MainScreen {
 			//call back rows and draw the correct information.
 		}
 	}
-	
-	
+		
+	protected boolean navigationClick(int status, int time){
+		Logger.a("Navidation Clicked");
+		if (lista.isFocus()){
+			Object evento =
+			lista.getCallback().get(lista, lista.getSelectedIndex());
+			if (evento != null){
+				Evento e = (Evento) evento;
+				ComentariosScreen screen = new ComentariosScreen(e);
+				getUiEngine().pushScreen(screen);
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
 	
 }

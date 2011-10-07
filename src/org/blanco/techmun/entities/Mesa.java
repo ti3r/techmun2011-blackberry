@@ -43,6 +43,7 @@ public class Mesa {
 	private String nombre = null;
 	private Usuario representante = null;
 	private String color = null;
+	private boolean isDarkColor = false;
 	
 	public Mesa(){
 		
@@ -79,7 +80,11 @@ public class Mesa {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
-	
+	public boolean isDarkColor() {
+		return isDarkColor;
+	}
+	public void setDarkColor(boolean isDarkColor) {
+		this.isDarkColor = isDarkColor;
+	}
 	
 }
