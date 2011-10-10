@@ -8,7 +8,7 @@ import org.blanco.techmun.entities.Evento;
 
 public class ComentariosFetcher {
 
-	public static Vector fetchComentarios(Evento evento){
+	public synchronized static Vector fetchComentarios(Evento evento){
 		Vector result = new Vector();
 		Comentario comentario = new Comentario();
 		comentario.setAutor("AleX"); 
@@ -45,5 +45,15 @@ public class ComentariosFetcher {
 //		String httpResponse = connection.getResponseMessage();
 //		System.out.println(httpResponse);
 		
+	}
+
+	public synchronized static boolean postComentario(Comentario com) {
+		//Guardar el comentario en esta parte.
+		//HttpConnection connection =	(HttpConnection) Connector
+//		.open("http://tec-ch-mun-2011.herokuapp.com/rest/comentarios");
+//		connection.setRequestMethod(HttpConnection.GET);
+//		String httpResponse = connection.getResponseMessage();
+//		System.out.println(httpResponse);
+		return true;
 	}
 }

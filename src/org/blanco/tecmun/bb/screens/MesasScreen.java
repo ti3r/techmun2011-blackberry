@@ -10,6 +10,7 @@ import net.rim.device.api.ui.container.MainScreen;
 import org.blanco.techmun.entities.Mesa;
 import org.blanco.tecmun.bb.Logger;
 import org.blanco.tecmun.bb.net.MesasFetcher;
+import org.blanco.tecmun.bb.ui.ScreenHeader;
 import org.blanco.tecmun.bb.ui.callbacks.MesasVectorListFieldCallBack;
 
 public class MesasScreen extends MainScreen {
@@ -21,7 +22,7 @@ public class MesasScreen extends MainScreen {
 	 */
 	public MesasScreen() {
 		super(MainScreen.VERTICAL_SCROLL | MainScreen.VERTICAL_SCROLLBAR);
-		setTitle("Mesas");
+		setTitle(new ScreenHeader("Mesas"));
 		
 		fetcher = new MesasFetcher();
 		Vector mesas = MesasFetcher.fetchMesas();

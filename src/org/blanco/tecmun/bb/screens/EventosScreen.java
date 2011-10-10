@@ -11,6 +11,7 @@ import org.blanco.tecmun.bb.Logger;
 import org.blanco.tecmun.bb.misc.Utils;
 import org.blanco.tecmun.bb.net.EventosFetcher;
 import org.blanco.tecmun.bb.ui.EventosListField;
+import org.blanco.tecmun.bb.ui.ScreenHeader;
 import org.blanco.tecmun.bb.ui.callbacks.EventosVectorListFieldCallBack;
 
 public class EventosScreen extends MainScreen {
@@ -21,7 +22,8 @@ public class EventosScreen extends MainScreen {
 	public EventosScreen(Mesa mesa){
 		super(MainScreen.VERTICAL_SCROLL | MainScreen.VERTICAL_SCROLLBAR);
 		if (mesa != null)
-			setTitle("Eventos para Mesa: "+mesa.getNombre());
+			
+			setTitle(new ScreenHeader("Eventos para Mesa: "+mesa.getNombre()));
 		this.mesa = mesa;
 		lista = new EventosListField(Utils.parseHtmlColor(mesa.getColor()),
 				mesa.isDarkColor());

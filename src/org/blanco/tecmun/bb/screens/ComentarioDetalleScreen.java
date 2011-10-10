@@ -9,6 +9,7 @@ import net.rim.device.api.ui.container.GridFieldManager;
 import net.rim.device.api.ui.container.MainScreen;
 
 import org.blanco.techmun.entities.Comentario;
+import org.blanco.tecmun.bb.ui.ScreenHeader;
 
 public class ComentarioDetalleScreen extends MainScreen {
 
@@ -19,8 +20,8 @@ public class ComentarioDetalleScreen extends MainScreen {
 		if (comentario == null)
 			throw new IllegalArgumentException("Comentario can't be null");
 		this.comentario = comentario;
-		setTitle(new ButtonField("Detalle"));
-		
+		setTitle(new ScreenHeader("Detalle"));
+				
 		LabelField autLabelField = new LabelField("Autor: ");
 		add(autLabelField);
 		LabelField autValLabelField = new LabelField(comentario.getAutor());
@@ -52,7 +53,8 @@ public class ComentarioDetalleScreen extends MainScreen {
 		btnPostComentario.setCommand(new Command(new CommandHandler() {
 			public void execute(ReadOnlyCommandMetadata metadata, Object context) {
 				ComentarioDetalleScreen.this.getUiEngine().pushScreen(
-						new PostComentarioScreen());
+						new PostComentarioScreen(
+								ComentarioDetalleScreen.this.comentario.getEvento()));
 			}
 		}));
 		GridFieldManager btnsGrid = new GridFieldManager(1, 2, 0);

@@ -2,8 +2,6 @@ package org.blanco.tecmun.bb;
 
 import java.util.Vector;
 
-import org.blanco.tecmun.bb.screens.MesasScreen;
-
 import net.rim.device.api.command.Command;
 import net.rim.device.api.command.CommandHandler;
 import net.rim.device.api.command.ReadOnlyCommandMetadata;
@@ -13,7 +11,8 @@ import net.rim.device.api.ui.component.ButtonField;
 import net.rim.device.api.ui.component.ListField;
 import net.rim.device.api.ui.container.MainScreen;
 
-import org.blanco.tecmun.bb.TecChMun2011App;
+import org.blanco.tecmun.bb.screens.MesasScreen;
+import org.blanco.tecmun.bb.ui.ScreenHeader;
 /**
  * A class extending the MainScreen class, which provides default standard
  * behavior for BlackBerry GUI applications.
@@ -28,8 +27,7 @@ public final class TecChMun2011Screen extends MainScreen
      */
     public TecChMun2011Screen()
     {        
-        // Set the displayed title of the screen       
-    	setTitle("Tec.Ch.Mun 2011");
+        setTitle(new ScreenHeader("Tec.Ch.Mun.2011"));
         initComponents();
     }
 

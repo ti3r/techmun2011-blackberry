@@ -1,13 +1,11 @@
 package org.blanco.tecmun.bb.misc;
 
-import org.blanco.tecmun.bb.Logger;
-
-import net.rim.device.api.math.Color3f;
+import net.rim.device.api.system.Bitmap;
 import net.rim.device.api.ui.Color;
-import net.rim.device.api.ui.decor.BackgroundFactory;
+import net.rim.device.api.ui.component.BitmapField;
 import net.rim.device.api.util.CharacterUtilities;
-import net.rim.device.api.util.StringMatch;
-import net.rim.device.api.util.StringPattern;
+
+import org.blanco.tecmun.bb.Logger;
 
 public class Utils {
 
@@ -52,5 +50,8 @@ public class Utils {
 			return Color.WHITE;
 		}
 	}
+	
+	public static Bitmap bitmapLogo = Bitmap.getBitmapResource("techchmunlogo.png");
+	public static BitmapField logo = new BitmapField(bitmapLogo);
 	
 }

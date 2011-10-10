@@ -6,7 +6,6 @@ import net.rim.device.api.command.Command;
 import net.rim.device.api.command.CommandHandler;
 import net.rim.device.api.command.ReadOnlyCommandMetadata;
 import net.rim.device.api.ui.MenuItem;
-import net.rim.device.api.ui.component.Dialog;
 import net.rim.device.api.ui.component.ListField;
 import net.rim.device.api.ui.component.Menu;
 import net.rim.device.api.ui.container.MainScreen;
@@ -15,6 +14,7 @@ import net.rim.device.api.util.StringProvider;
 import org.blanco.techmun.entities.Comentario;
 import org.blanco.techmun.entities.Evento;
 import org.blanco.tecmun.bb.net.ComentariosFetcher;
+import org.blanco.tecmun.bb.ui.ScreenHeader;
 import org.blanco.tecmun.bb.ui.callbacks.ComentariosVectorListFieldCallBack;
 
 public class ComentariosScreen extends MainScreen {
@@ -31,7 +31,7 @@ public class ComentariosScreen extends MainScreen {
 			throw new IllegalArgumentException("Evento for comentarios " +
 					"screen should not be null");
 		this.evento = evento;
-		setTitle("Comentarios");
+		setTitle(new ScreenHeader("Comentarios"));
 		lista = new ListField();
 		add(lista);
 	}
@@ -66,7 +66,8 @@ public class ComentariosScreen extends MainScreen {
 				2, 1);
 		postComentMItem.setCommand(new Command(new CommandHandler() {
 			public void execute(ReadOnlyCommandMetadata metadata, Object context) {
-				Dialog.alert("Muestra la forma para someter comentario");
+				getUiEngine().pushScreen(new PostComentarioScreen(
+						ComentariosScreen.this.evento));
 			}
 		}));
 		menu.add(postComentMItem);
